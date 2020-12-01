@@ -52,3 +52,6 @@ if (targetNums !== null) {
 else {
   console.log( 'no solution found' )
 }
+
+// export reusable function
+export { getInput }
