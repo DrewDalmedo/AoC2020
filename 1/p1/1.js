@@ -21,7 +21,6 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 import fs from 'fs';
 
 const getInput = (path) => {
-  
   // convert each element in the array into a number
   const sanitize = (arr) => {
     return arr.map( (num) => parseInt(num) )
@@ -29,9 +28,21 @@ const getInput = (path) => {
   
   // read inputs from file and separate each new line into an element in an array
   let input = fs.readFileSync(path).toString().split("\n")
+  // return sanitized array
   return sanitize(input)
+}
+
+// time complexity: O(n^2) (terrible!!)
+const findNums = (arr, target) => {
+  for (let x = 0; x < arr.length; x++) 
+    for (let y = x + 1; y < arr.length; y++) 
+      if (arr[x] + arr[y] === target)
+        return [ arr[x], arr[y] ]
+    
+  return null 
 }
 
 let nums = getInput('./input.txt')
 
-console.log(nums)
+let targetNums = findNums(nums, 2020)
+console.log(targetNums)
