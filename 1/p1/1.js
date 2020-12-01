@@ -45,4 +45,10 @@ const findNums = (arr, target) => {
 let nums = getInput('./input.txt')
 
 let targetNums = findNums(nums, 2020)
-console.log(targetNums)
+
+if (targetNums !== null) {
+  console.log( targetNums[0] * targetNums[1] )
+}
+else {
+  console.log( 'no solution found' )
+}
