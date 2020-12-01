@@ -22,12 +22,14 @@ import fs from 'fs';
 
 const getInput = (path) => {
   
-  const sanitizeNumberArray = (arr) => {
+  // convert each element in the array into a number
+  const sanitize = (arr) => {
     return arr.map( (num) => parseInt(num) )
   }
   
+  // read inputs from file and separate each new line into an element in an array
   let input = fs.readFileSync(path).toString().split("\n")
-  return sanitizeNumberArray(input)
+  return sanitize(input)
 }
 
 let nums = getInput('./input.txt')
