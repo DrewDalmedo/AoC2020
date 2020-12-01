@@ -21,7 +21,15 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 import fs from 'fs';
 
 const getInput = (path) => {
-  return fs.readFileSync(path).toString().split("\n")
+  
+  const sanitizeNumberArray = (arr) => {
+    return arr.map( (num) => parseInt(num) )
+  }
+  
+  let input = fs.readFileSync(path).toString().split("\n")
+  return sanitizeNumberArray(input)
 }
 
-console.log(getInput('./input.txt'))
+let nums = getInput('./input.txt')
+
+console.log(nums)
