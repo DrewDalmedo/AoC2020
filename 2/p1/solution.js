@@ -48,7 +48,7 @@ const sanitizeRequiredLetter = (letter) => {
 // check whether a given password is valid
 const validate = (data) => {
   if (data === undefined)
-    return undefined
+    return false 
   
   let bounds = data[0]
   let target = data[1]
@@ -62,7 +62,9 @@ const validate = (data) => {
   });
   
   if (occurrences.length >= bounds[0] && occurrences.length <= bounds[1])
-    return password
+    return true 
+
+  return false
 }
 
 // transform an input line into something which can be validated
@@ -80,7 +82,7 @@ const sanitizeInput = (input) => {
 
 // return a list of valid passwords (empty if there are none)
 const findValidPasswords = (passwords) => {
-  return passwords.map(validate).filter( result => result !== undefined )
+  return passwords.filter( validate )
 }
 
 // get the inputs from the provided file and sanitize them
