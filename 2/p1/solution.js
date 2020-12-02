@@ -45,6 +45,9 @@ const sanitizeRequiredLetter = (letter) => {
 }
 
 const validate = (data) => {
+  if (data === undefined)
+    return undefined
+  
   let bounds = data[0]
   let target = data[1]
   let password = data[2]
@@ -60,8 +63,26 @@ const validate = (data) => {
     return password
 }
 
-let passwordInputs = Input.getInput('./input.txt')
+const sanitizeInput = (input) => {
+  //console.log(input)
+  if (input === '')
+    return
 
+  let separatedInput = separateData(input)
+  separatedInput[0] = separateBounds(separatedInput[0])
+  separatedInput[1] = sanitizeRequiredLetter(separatedInput[1])
+
+  return separatedInput
+}
+
+const findValidPasswords = (passwords) => {
+  return passwords.map(validate).filter( result => result !== undefined )
+}
+
+let passwordInputs = Input.getInput('./input.txt').map(sanitizeInput)
+
+console.log(findValidPasswords(passwordInputs).length)
+/*
 let testData = '1-3 a: abcde'
 let separatedTestData = separateData(testData)
 separatedTestData[0] = separateBounds(separatedTestData[0])
@@ -70,3 +91,4 @@ separatedTestData[1] = sanitizeRequiredLetter(separatedTestData[1])
 console.log(testData)
 console.log(separatedTestData)
 console.log(validate(separatedTestData))
+*/
