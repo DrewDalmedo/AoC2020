@@ -19,6 +19,7 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 */
 
 import fs from 'fs';
+import Input from '../../InputManager/Input.js'
 
 const getInput = (path) => {
   // convert each element in the array into a number
@@ -42,7 +43,7 @@ const findNums = (arr, target) => {
   return null 
 }
 
-let nums = getInput('./input.txt')
+let nums = Input.sanitizeToInt(Input.getInput('./input.txt'))
 
 let targetNums = findNums(nums, 2020)
 
@@ -52,6 +53,3 @@ if (targetNums !== null) {
 else {
   console.log( 'no solution found' )
 }
-
-// export reusable function
-export { getInput }
