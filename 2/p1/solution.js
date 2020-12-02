@@ -32,6 +32,7 @@ looking for the LENGTH of the final array, not the passwords themselved
 
 import Input from '../../InputManager/Input.js'
 
+// utility functions
 const separateData = (line) => {
   return line.split(' ')
 }
@@ -44,6 +45,7 @@ const sanitizeRequiredLetter = (letter) => {
   return letter.slice(0, -1)
 }
 
+// check whether a given password is valid
 const validate = (data) => {
   if (data === undefined)
     return undefined
@@ -63,6 +65,7 @@ const validate = (data) => {
     return password
 }
 
+// transform an input line into something which can be validated
 const sanitizeInput = (input) => {
   //console.log(input)
   if (input === '')
@@ -75,13 +78,17 @@ const sanitizeInput = (input) => {
   return separatedInput
 }
 
+// return a list of valid passwords (empty if there are none)
 const findValidPasswords = (passwords) => {
   return passwords.map(validate).filter( result => result !== undefined )
 }
 
+// get the inputs from the provided file and sanitize them
 let passwordInputs = Input.getInput('./input.txt').map(sanitizeInput)
 
+// print the number of valid passwords
 console.log(findValidPasswords(passwordInputs).length)
+
 /*
 let testData = '1-3 a: abcde'
 let separatedTestData = separateData(testData)
