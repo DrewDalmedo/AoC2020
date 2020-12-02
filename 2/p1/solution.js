@@ -44,13 +44,29 @@ const sanitizeRequiredLetter = (letter) => {
   return letter.slice(0, -1)
 }
 
+const validate = (data) => {
+  let bounds = data[0]
+  let target = data[1]
+  let password = data[2]
+
+  let occurrences = ''
+
+  password.split('').forEach( letter => {
+    if (letter === target) 
+      occurrences += letter
+  });
+  
+  if (occurrences.length >= bounds[0] && occurrences.length <= bounds[1])
+    return password
+}
 
 let passwordInputs = Input.getInput('./input.txt')
 
-let testData = passwordInputs[0]
+let testData = '1-3 a: abcde'
 let separatedTestData = separateData(testData)
 separatedTestData[0] = separateBounds(separatedTestData[0])
 separatedTestData[1] = sanitizeRequiredLetter(separatedTestData[1])
 
 console.log(testData)
 console.log(separatedTestData)
+console.log(validate(separatedTestData))
