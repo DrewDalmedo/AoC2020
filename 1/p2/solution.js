@@ -21,11 +21,13 @@ const findNums = (arr, target) => {
   return null 
 }
 
-
+// [ ...inputs from file ]
 let input = getInput('./input.txt')
 
+// [ n1, n2, n3 ]
 let targetNums = findNums(input, 2020)
 
+// if a matching set was found console.log the product of all three
 if (targetNums !== null) {
   console.log( targetNums[0] * targetNums[1] * targetNums[2] )
 }
