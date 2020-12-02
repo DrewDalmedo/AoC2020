@@ -6,9 +6,7 @@ Using the above example again, the three entries that sum to 2020 are 979, 366, 
 In your expense report, what is the product of the three entries that sum to 2020?
 */
 
-// reuse getInput function from p1 solution
-// bug: importing the function runs the entire p1 solution itself, not ideal.
-import { getInput } from '../p1/solution.js'
+import Input from '../../InputManager/Input.js'
 
 // time complexity: O(n^3) (VERY terrible!!!!!)
 const findNums = (arr, target) => {
@@ -22,7 +20,7 @@ const findNums = (arr, target) => {
 }
 
 // [ ...inputs from file ]
-let input = getInput('./input.txt')
+let input = Input.sanitizeToInt(Input.getInput('./input.txt')) 
 
 // [ n1, n2, n3 ]
 let targetNums = findNums(input, 2020)
