@@ -21,6 +21,33 @@ Of course, your expense report is much larger. Find the two entries that sum to 
 import fs from 'fs';
 import Input from '../../InputManager/Input.js'
 
+export default class D1P1Solution {
+  // time complexity: O(n^2) (terrible!!)
+  findNums(arr, target) {
+    for (let x = 0; x < arr.length; x++) 
+      for (let y = x + 1; y < arr.length; y++) 
+        if (arr[x] + arr[y] === target)
+          return [ arr[x], arr[y] ]
+      
+    return null 
+  }
+
+  run() {
+    let nums = Input.sanitizeToInt(Input.getInput('./input.txt'))
+
+    let targetNums = findNums(nums, 2020)
+
+    if (targetNums !== null) {
+      console.log( targetNums[0] * targetNums[1] )
+    }
+    else {
+      console.log( 'no solution found' )
+    }
+  }
+  
+}
+
+
 const getInput = (path) => {
   // convert each element in the array into a number
   const sanitize = (arr) => {
@@ -33,23 +60,3 @@ const getInput = (path) => {
   return sanitize(input)
 }
 
-// time complexity: O(n^2) (terrible!!)
-const findNums = (arr, target) => {
-  for (let x = 0; x < arr.length; x++) 
-    for (let y = x + 1; y < arr.length; y++) 
-      if (arr[x] + arr[y] === target)
-        return [ arr[x], arr[y] ]
-    
-  return null 
-}
-
-let nums = Input.sanitizeToInt(Input.getInput('./input.txt'))
-
-let targetNums = findNums(nums, 2020)
-
-if (targetNums !== null) {
-  console.log( targetNums[0] * targetNums[1] )
-}
-else {
-  console.log( 'no solution found' )
-}
